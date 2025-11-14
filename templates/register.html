@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+</head>
+<body>
+    <div style="margin-top: 50px;" class="ui container">
+        <h1 class="ui center aligned header">Register</h1>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="ui negative message">
+                    <div class="header">Error</div>
+                    <ul class="list">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <form class="ui form" action="/register" method="post">
+            <div class="field">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="field">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" placeholder="Confirm your password" required>
+            </div>
+            <button class="ui blue button" type="submit">Register</button>
+        </form>
+        
+        <div style="margin-top: 20px;">
+            <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+        </div>
+    </div>
+</body>
+</html>
